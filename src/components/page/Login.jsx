@@ -1,26 +1,23 @@
-// import { useState } from "react";
-// import { loginWithEmailAndPassword } from "../firebase";
-// import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { loginUser } from "../../config/firebase";
 // import {signInWithGoogle} from "../firebase";
 
-import { NavLink } from "react-router-dom";
-
 const Login = () => {
-  // const navigate = useNavigate();
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const handleLogin = async (event) => {
-  //   event.preventDefault();
-  //   try{
-  //     const response = await loginWithEmailAndPassword(email, password);
-  //     console.log(response);
-  //     navigate("/home")
-  //   } catch(error) {
-  //     console.log(error);
-  //   }
-
-  // }
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await loginUser(email, password);
+      console.log(response);
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const handleSocialLogin = async () => {
   //   const user = await signInWithGoogle();
@@ -37,6 +34,8 @@ const Login = () => {
           <input
             type="email"
             id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="Email address"
             className="mx-2 my-2 p-1 border border-gray-100 rounded-sm"
@@ -47,13 +46,18 @@ const Login = () => {
           <input
             type="password"
             id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="Password"
             className="mx-2 my-2 p-1 border border-gray-100 rounded-sm"
           />
         </div>
         <div>
-          <button className="bg-black text-white p-1 rounded-md mx-2">
+          <button
+            className="bg-black text-white p-1 rounded-md mx-2"
+            onClick={handleLogin}
+          >
             Login
           </button>
 
