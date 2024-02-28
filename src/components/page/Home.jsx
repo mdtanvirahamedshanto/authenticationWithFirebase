@@ -20,10 +20,10 @@ const Home = () => {
   // if (loading) return <p> User info loading....</p>
 
   return (
-    <>
+    <div className="flex flex-col w-full h-screen items-center justify-center">
       <div>Welcome, </div>
-      <button className="bg-black text-white tounded p-1">Logout</button>
-    </>
+      <button className="bg-black text-white tounded mt-9 p-1">Logout</button>
+    </div>
   );
 };
 
