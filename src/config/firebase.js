@@ -41,4 +41,4 @@ const loginUser = async (email, password) => {
   }
 };
 
-export { createUser, loginUser };
+export { auth, createUser, loginUser };
