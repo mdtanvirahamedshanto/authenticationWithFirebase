@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebase";
 
 const Home = () => {
@@ -27,13 +27,19 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-full h-screen items-center justify-center">
-      <div>Welcome, {user.email}</div>
-      <button
-        className="bg-black text-white tounded mt-9 p-1"
-        onClick={handleLogout}
-      >
-        Logout
-      </button>
+      {user ? (
+        <>
+          <div>Welcome, {user?.email}</div>
+          <button
+            className="bg-black text-white tounded mt-9 p-1"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </>
+      ) : (
+        <Link to={"/login"}>Please Loging First</Link>
+      )}
     </div>
   );
 };

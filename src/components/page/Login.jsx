@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { loginUser } from "../../config/firebase";
+import { createUserWithGoogle, loginUser } from "../../config/firebase";
 // import {signInWithGoogle} from "../firebase";
 
 const Login = () => {
@@ -19,11 +19,11 @@ const Login = () => {
     }
   };
 
-  // const handleSocialLogin = async () => {
-  //   const user = await signInWithGoogle();
-  //   console.log(user);
-  //   navigate("/home");
-  // }
+  const handleSocialLogin = async () => {
+    const user = await createUserWithGoogle();
+    console.log(user);
+    navigate("/home");
+  };
 
   return (
     <div className="flex flex-col p-4 justify-center items-center">
@@ -61,7 +61,10 @@ const Login = () => {
             Login
           </button>
 
-          <button className="bg-blue-500 text-white p-1 rounded-md">
+          <button
+            className="bg-blue-500 text-white p-1 rounded-md"
+            onClick={handleSocialLogin}
+          >
             Login With Google
           </button>
         </div>
